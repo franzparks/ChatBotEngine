@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.francis.chatbot.constants.Constants;
 import com.francis.chatbot.model.Message;
+import com.francis.chatbot.model.TextMessage;
 import com.francis.chatbot.service.MessageService;
 import com.francis.chatbot.service.model.Coords;
 import com.francis.chatbot.service.model.GeoResponse;
@@ -22,6 +23,7 @@ import com.francis.chatbot.service.model.GeoResponseParser;
 public class MessageServiceImpl implements MessageService{
 	
 	private final RestTemplate restTemplate;
+	private final String errorMessage = "Place cannot be found";
 	
 	public MessageServiceImpl(RestTemplateBuilder restTemplateBuilder){
 		this.restTemplate = restTemplateBuilder.build();
@@ -29,8 +31,14 @@ public class MessageServiceImpl implements MessageService{
 
 	@Override
     public Message processMessage(String message) {
-	    
-	    return null;
+	    TextMessage processedMessage = null;
+	    Coords coords =  getAddressCoordinates(message);
+	    if(coords == null){
+	    	processedMessage = new TextMessage(errorMessage);
+	    }else{
+	    	processedMessage = new TextMessage("coords : "+coords.getLatitude() + " ," + coords.getLongitude());
+	    }
+	    return processedMessage;
     }
 	
 	private Coords getAddressCoordinates(String address){
