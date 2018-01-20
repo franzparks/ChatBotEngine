@@ -7,6 +7,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.francis.chatbot.constants.Constants;
 import com.francis.chatbot.model.Message;
 import com.francis.chatbot.service.MessageService;
 
@@ -30,7 +31,8 @@ public class MessageServiceImpl implements MessageService{
     }
 	
 	private String getAddressCoordinates(String address){
-		return "";
+		String fullUrl = Constants.GMAPS_BASE_URL + "{address}" + "&key="+ Constants.GMAPS_API_KEY;
+		return this.restTemplate.getForObject(fullUrl, String.class, address);
 	}
 	
 }
