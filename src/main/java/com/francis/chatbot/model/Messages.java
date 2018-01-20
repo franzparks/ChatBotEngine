@@ -22,4 +22,12 @@ public class Messages {
 		this.messages.add(message);
 	}
 	
+	public List<Message> getMessages(){
+		return this.messages;
+	}
+	
+	public void setMessages(List<Message> messages){
+		this.messages = messages;
+	}
+	
 }
