@@ -46,8 +46,8 @@ public class MessageServiceImpl implements MessageService{
 		String fullUrl = Constants.GMAPS_BASE_URL + "{address}" + "&key="+ Constants.GMAPS_API_KEY;
 		
 		String results = this.restTemplate.getForObject(fullUrl, String.class, address);
-		System.out.println(results);
-		return null; //createCoordinates(results);
+		
+		return createCoordinates(results);
 	}
 	
 	private Coords createCoordinates(String json){
