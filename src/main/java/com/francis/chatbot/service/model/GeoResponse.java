@@ -10,6 +10,7 @@ import java.util.List;
  *
  */
 public class GeoResponse {
+	
 	List<Result> results;
     String status;
 
