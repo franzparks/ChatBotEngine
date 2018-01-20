@@ -29,7 +29,7 @@ public class MessageServiceImpl implements MessageService{
 	    return null;
     }
 	
-	private String callGoogleMapsApi(String address){
+	private String getAddressCoordinates(String address){
 		return "";
 	}
 	
