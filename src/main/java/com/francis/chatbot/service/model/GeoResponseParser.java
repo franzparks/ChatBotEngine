@@ -13,7 +13,7 @@ public class GeoResponseParser {
 	
 	Gson gson = new Gson();
 	
-	GeoResponse parse(String responseString){
+	public GeoResponse parse(String responseString){
 		return gson.fromJson(responseString, GeoResponse.class);
 	}
 }

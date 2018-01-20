@@ -10,6 +10,9 @@ import org.springframework.web.client.RestTemplate;
 import com.francis.chatbot.constants.Constants;
 import com.francis.chatbot.model.Message;
 import com.francis.chatbot.service.MessageService;
+import com.francis.chatbot.service.model.Coords;
+import com.francis.chatbot.service.model.GeoResponse;
+import com.francis.chatbot.service.model.GeoResponseParser;
 
 /**
  * @author francisphiri
@@ -30,9 +33,25 @@ public class MessageServiceImpl implements MessageService{
 	    return null;
     }
 	
-	private String getAddressCoordinates(String address){
+	private Coords getAddressCoordinates(String address){
+		
 		String fullUrl = Constants.GMAPS_BASE_URL + "{address}" + "&key="+ Constants.GMAPS_API_KEY;
-		return this.restTemplate.getForObject(fullUrl, String.class, address);
+		
+		String results = this.restTemplate.getForObject(fullUrl, String.class, address);
+		
+		return createCoordinates(results);
+	}
+	
+	private Coords createCoordinates(String json){
+		
+		GeoResponse response = new GeoResponseParser().parse(json);
+		
+		if(response.status.equals("OK")){
+			double lat = response.results.get(0).geometry.location.lat;
+			double lng = response.results.get(0).geometry.location.lng;
+			return new Coords(lat,lng);
+		}
+		return null;
 	}
 	
 }

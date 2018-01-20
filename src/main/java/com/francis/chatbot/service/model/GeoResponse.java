@@ -11,34 +11,42 @@ import java.util.List;
  */
 public class GeoResponse {
 	
-	List<Result> results;
-    String status;
+	public List<Result> results;
+    public String status;
+    
+    /*public List<Result> getResults(){
+    	return this.results;
+    }
+    
+    public String getStatus(){
+    	return this.status;
+    }*/
 
-    static class Result {
-        List<AddressComponent> address_components;
-        String formatted_address;
-        Geometry geometry;
-        boolean partial_match;
-        String place_id;
-        List<String> types;
+    public static class Result {
+    	public List<AddressComponent> address_components;
+    	public String formatted_address;
+    	public Geometry geometry;
+    	public boolean partial_match;
+    	public String place_id;
+    	public List<String> types;
 
         static class AddressComponent {
-            String long_name, short_name;
-            List<String> types;
+            public String long_name, short_name;
+            public List<String> types;
         }
 
-        static class Geometry {
-            Rect bounds;
-            LatLng location;
-            String location_type;
-            Rect viewport;
+        public static class Geometry {
+        	public Rect bounds;
+        	public LatLng location;
+        	public String location_type;
+        	public Rect viewport;
 
-            static class Rect {
-                LatLng northeast, southwest;
+            public static class Rect {
+            	public LatLng northeast, southwest;
             }
 
-            static class LatLng {
-                double lat, lng;
+            public static class LatLng {
+            	public double lat, lng;
             }
         }
     }
