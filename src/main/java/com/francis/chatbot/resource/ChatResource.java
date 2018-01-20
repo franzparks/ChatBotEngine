@@ -5,6 +5,7 @@ package com.francis.chatbot.resource;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.francis.chatbot.model.Message;
 import com.francis.chatbot.model.Messages;
 import com.francis.chatbot.model.TextMessage;
+import com.francis.chatbot.service.MessageService;
 
 /**
  * @author francisphiri
@@ -27,6 +29,9 @@ public class ChatResource {
 	
 	private String currentUsername;
 	private String currentUserId;
+	
+	@Autowired
+	private MessageService messageService;
 	
 	@RequestMapping(value = "/messages", method = RequestMethod.POST,
 			consumes = "multipart/form-data")
@@ -46,8 +51,9 @@ public class ChatResource {
 			String welcomeMessage = String.format(welcomeMessageTemplate, userName); 
 			messagesList.addMessage(new TextMessage(welcomeMessage));
 		}else if(action.equals("message")){
-			//process message -- echo for now
-			messagesList.addMessage(new TextMessage(userMessage));
+			//process message
+			Message processedMessage = messageService.processMessage(userMessage);
+			messagesList.addMessage(processedMessage);
 		}
 		
 		return messagesList;
