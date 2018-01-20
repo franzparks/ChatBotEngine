@@ -23,6 +23,11 @@ import com.francis.chatbot.model.TextMessage;
 @RequestMapping("/chat")
 public class ChatResource {
 	
+	private static final String welcomeMessageTemplate = "Hello, %s!";
+	
+	private String currentUsername;
+	private String currentUserId;
+	
 	@RequestMapping(value = "/messages", method = RequestMethod.POST,
 			consumes = "multipart/form-data")
 	public Messages chatMessageHandler(
@@ -31,8 +36,20 @@ public class ChatResource {
 			@RequestParam(name = "name", required = false) String userName,
 			@RequestParam(name = "text", required = false) String userMessage
 		){
+		
 		Messages messagesList = new Messages();
-		messagesList.addMessage(new TextMessage("Hello User!"));
+		
+		if(action.equals("join")){
+			//welcome user
+			this.currentUserId = userId;
+			this.currentUsername = userName;
+			String welcomeMessage = String.format(welcomeMessageTemplate, userName); 
+			messagesList.addMessage(new TextMessage(welcomeMessage));
+		}else if(action.equals("message")){
+			//process message -- echo for now
+			messagesList.addMessage(new TextMessage(userMessage));
+		}
+		
 		return messagesList;
 	}
 }
