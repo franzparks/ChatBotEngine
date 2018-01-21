@@ -13,14 +13,6 @@ public class GeoResponse {
 	
 	public List<Result> results;
     public String status;
-    
-    /*public List<Result> getResults(){
-    	return this.results;
-    }
-    
-    public String getStatus(){
-    	return this.status;
-    }*/
 
     public static class Result {
     	public List<AddressComponent> address_components;
