@@ -49,6 +49,11 @@ public class MessageServiceImpl implements MessageService{
 	    	processedMessage = new TextMessage(errorMessage);
 	    }else{
 	    	processedMessage = new TextMessage("coords : "+coords.getLatitude() + " ," + coords.getLongitude());
+	    	
+	    	Weather w = getCurrentWeather(coords.getLatitude(), coords.getLongitude());
+	    	String start = "Currently it's ";
+	    	start += w.getTimezone();
+	    	System.out.println(start);
 	    }
 	    return processedMessage;
     }
@@ -74,12 +79,12 @@ public class MessageServiceImpl implements MessageService{
 		return null;
 	}
 	
-	private Weather getCurrentWeather(String latitude, String longitude){
+	private Weather getCurrentWeather(double latitude, double longitude){
 			
-		String fullUrl = Constants.DARK_SKY_BASE_URL + "/"+Constants.DARK_SKY_API_KEY + "{latitude}," + "{longitude}";
-		
+		String fullUrl = Constants.DARK_SKY_BASE_URL +Constants.DARK_SKY_API_KEY + "/{latitude}," + "{longitude}";
+		System.out.println("full url : "+fullUrl);
 		Weather currentWeather = this.restTemplate.getForObject(fullUrl, Weather.class, latitude,longitude);
-		
+		System.out.println("Weather : "+currentWeather);
 		return currentWeather;
 	}
 	
