@@ -24,6 +24,7 @@ import com.francis.chatbot.service.MessageService;
 import com.francis.chatbot.service.model.Coords;
 import com.francis.chatbot.service.model.GeoResponse;
 import com.francis.chatbot.service.model.GeoResponseParser;
+import com.francis.chatbot.service.model.Weather;
 
 /**
  * @author francisphiri
@@ -71,6 +72,15 @@ public class MessageServiceImpl implements MessageService{
 			return new Coords(lat,lng);
 		}
 		return null;
+	}
+	
+	private Weather getCurrentWeather(String latitude, String longitude){
+			
+		String fullUrl = Constants.DARK_SKY_BASE_URL + "/"+Constants.DARK_SKY_API_KEY + "{latitude}," + "{longitude}";
+		
+		Weather currentWeather = this.restTemplate.getForObject(fullUrl, Weather.class, latitude,longitude);
+		
+		return currentWeather;
 	}
 	
 }
