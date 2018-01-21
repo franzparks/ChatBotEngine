@@ -48,11 +48,14 @@ public class MessageServiceImpl implements MessageService{
 	    if(coords == null){
 	    	processedMessage = new TextMessage(errorMessage);
 	    }else{
-	    	processedMessage = new TextMessage("coords : "+coords.getLatitude() + " ," + coords.getLongitude());
+	    	//processedMessage = new TextMessage("coords : "+coords.getLatitude() + " ," + coords.getLongitude());
 	    	
 	    	Weather w = getCurrentWeather(coords.getLatitude(), coords.getLongitude());
 	    	String start = "Currently it's ";
-	    	start += w.getTimezone();
+	    	String end = "F. ";
+	    	start += w.getCurrently().getTemperature();
+	    	end += w.getCurrently().getSummary();
+	    	processedMessage = new TextMessage(start+end);
 	    	System.out.println(start);
 	    }
 	    return processedMessage;
