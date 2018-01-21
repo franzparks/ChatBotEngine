@@ -7,6 +7,16 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import tk.plogitech.darksky.api.jackson.DarkSkyJacksonClient;
+import tk.plogitech.darksky.forecast.APIKey;
+import tk.plogitech.darksky.forecast.ForecastException;
+import tk.plogitech.darksky.forecast.ForecastRequest;
+import tk.plogitech.darksky.forecast.ForecastRequestBuilder;
+import tk.plogitech.darksky.forecast.GeoCoordinates;
+import tk.plogitech.darksky.forecast.model.Forecast;
+import tk.plogitech.darksky.forecast.model.Latitude;
+import tk.plogitech.darksky.forecast.model.Longitude;
+
 import com.francis.chatbot.constants.Constants;
 import com.francis.chatbot.model.Message;
 import com.francis.chatbot.model.TextMessage;
@@ -33,6 +43,7 @@ public class MessageServiceImpl implements MessageService{
     public Message processMessage(String message) {
 	    TextMessage processedMessage = null;
 	    Coords coords =  getAddressCoordinates(message);
+	   
 	    if(coords == null){
 	    	processedMessage = new TextMessage(errorMessage);
 	    }else{
