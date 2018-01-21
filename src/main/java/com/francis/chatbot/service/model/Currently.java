@@ -182,6 +182,23 @@ public class Currently {
 	public void setOzone(String ozone) {
 		this.ozone = ozone;
 	}
+
+	@Override
+    public String toString() {
+	    return "Currently [time=" + time + ", summary=" + summary + ", icon="
+	            + icon + ", nearestStormDistance=" + nearestStormDistance
+	            + ", nearestStormBearing=" + nearestStormBearing
+	            + ", precipIntensity=" + precipIntensity
+	            + ", precipProbability=" + precipProbability + ", temperature="
+	            + temperature + ", apparentTemperature=" + apparentTemperature
+	            + ", dewPoint=" + dewPoint + ", humidity=" + humidity
+	            + ", pressure=" + pressure + ", windSpeed=" + windSpeed
+	            + ", windGust=" + windGust + ", windBearing=" + windBearing
+	            + ", cloudCover=" + cloudCover + ", uvIndex=" + uvIndex
+	            + ", visibility=" + visibility + ", ozone=" + ozone + "]";
+    }
+	
+	
 	
 	
 }

@@ -9,14 +9,11 @@ package com.francis.chatbot.service.model;
  */
 public class Weather {
 	
-	public String latitude;
-	public String longitude;
-	public String timezone;
+	private String latitude;
+	private String longitude;
+	private String timezone;
+	private Currently currently;
 	
-	public static class Currently {
-		
-		
-    }
 	
 	public Weather(){}
 
@@ -26,6 +23,10 @@ public class Weather {
 
 	public String getLongitude() {
 		return longitude;
+	}
+	
+	public Currently getCurrently() {
+		return currently;
 	}
 
 	public String getTimezone() {
@@ -43,6 +44,18 @@ public class Weather {
 	public void setTimezone(String timezone) {
 		this.timezone = timezone;
 	}
+	
+	public void setCurrently(Currently currently) {
+		this.currently = currently;
+	}
+
+	@Override
+    public String toString() {
+	    return "Weather [latitude=" + latitude + ", longitude=" + longitude
+	            + ", timezone=" + timezone + ", currently=" + currently + "]";
+    }
+	
+	
 	
 	
 }
