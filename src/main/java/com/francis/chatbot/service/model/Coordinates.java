@@ -7,12 +7,12 @@ package com.francis.chatbot.service.model;
  * @author francisphiri
  *
  */
-public class Coords {
+public class Coordinates {
 	
 	private double latitude;
 	private double longitude;
 	
-	public Coords(double latitude, double longitude) {
+	public Coordinates(double latitude, double longitude) {
 	    super();
 	    this.latitude = latitude;
 	    this.longitude = longitude;

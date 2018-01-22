@@ -21,7 +21,7 @@ import com.francis.chatbot.constants.Constants;
 import com.francis.chatbot.model.Message;
 import com.francis.chatbot.model.TextMessage;
 import com.francis.chatbot.service.MessageService;
-import com.francis.chatbot.service.model.Coords;
+import com.francis.chatbot.service.model.Coordinates;
 import com.francis.chatbot.service.model.GeoResponse;
 import com.francis.chatbot.service.model.GeoResponseParser;
 import com.francis.chatbot.service.model.Weather;
@@ -43,7 +43,7 @@ public class MessageServiceImpl implements MessageService{
 	@Override
     public Message processMessage(String message) {
 	    TextMessage processedMessage = null;
-	    Coords coords =  getAddressCoordinates(message);
+	    Coordinates coords =  getAddressCoordinates(message);
 	   
 	    if(coords == null){
 	    	processedMessage = new TextMessage(errorMessage);
@@ -61,7 +61,7 @@ public class MessageServiceImpl implements MessageService{
 	    return processedMessage;
     }
 	
-	private Coords getAddressCoordinates(String address){
+	private Coordinates getAddressCoordinates(String address){
 		
 		String fullUrl = Constants.GMAPS_BASE_URL + "{address}" + "&key="+ Constants.GMAPS_API_KEY;
 		
@@ -70,14 +70,14 @@ public class MessageServiceImpl implements MessageService{
 		return createCoordinates(results);
 	}
 	
-	private Coords createCoordinates(String json){
+	private Coordinates createCoordinates(String json){
 		
 		GeoResponse response = new GeoResponseParser().parse(json);
 		
 		if(response.status.equals("OK")){
 			double lat = response.results.get(0).geometry.location.lat;
 			double lng = response.results.get(0).geometry.location.lng;
-			return new Coords(lat,lng);
+			return new Coordinates(lat,lng);
 		}
 		return null;
 	}
