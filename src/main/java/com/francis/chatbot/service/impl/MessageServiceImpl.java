@@ -38,7 +38,6 @@ public class MessageServiceImpl implements MessageService{
 	    if(coords == null){
 	    	processedMessage = new TextMessage(errorMessage);
 	    }else{
-	    	//processedMessage = new TextMessage("coords : "+coords.getLatitude() + " ," + coords.getLongitude());
 	    	
 	    	Weather w = getCurrentWeather(coords.getLatitude(), coords.getLongitude());
 	    	String start = "Currently it's ";
@@ -72,6 +71,7 @@ public class MessageServiceImpl implements MessageService{
 		return null;
 	}
 	
+
 	private Weather getCurrentWeather(double latitude, double longitude){
 			
 		String fullUrl = Constants.DARK_SKY_BASE_URL +Constants.DARK_SKY_API_KEY + "/{latitude}," + "{longitude}";

@@ -48,9 +48,9 @@ public class ChatResource {
 			//welcome user
 			this.currentUserId = userId;
 			this.currentUsername = userName;
-			String welcomeMessage = String.format(welcomeMessageTemplate, userName); 
+			String welcomeMessage = String.format(welcomeMessageTemplate, this.currentUsername); 
 			messagesList.addMessage(new TextMessage(welcomeMessage));
-		}else if(action.equals("message")){
+		}else if(userId.equals(this.currentUserId) && action.equals("message")){
 			//process message
 			Message processedMessage = messageService.processMessage(userMessage);
 			messagesList.addMessage(processedMessage);
