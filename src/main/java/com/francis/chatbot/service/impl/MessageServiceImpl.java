@@ -30,6 +30,9 @@ public class MessageServiceImpl implements MessageService{
 		this.restTemplate = restTemplateBuilder.build();
 	}
 
+	/**
+	 * Process the message given by a user
+	 */
 	@Override
     public Message processMessage(String message) {
 	    TextMessage processedMessage = null;
@@ -50,6 +53,11 @@ public class MessageServiceImpl implements MessageService{
 	    return processedMessage;
     }
 	
+	/**
+	 * Get coordinates of a given address from the gmap api
+	 * @param address
+	 * @return Coordinates
+	 */
 	private Coordinates getAddressCoordinates(String address){
 		
 		String fullUrl = Constants.GMAPS_BASE_URL + "{address}" + "&key="+ Constants.GMAPS_API_KEY;
@@ -59,6 +67,11 @@ public class MessageServiceImpl implements MessageService{
 		return createCoordinates(results);
 	}
 	
+	/**
+	 * Get coordinates from a gmap api response
+	 * @param json
+	 * @return Coordinates
+	 */
 	private Coordinates createCoordinates(String json){
 		
 		GeoResponse response = new GeoResponseParser().parse(json);
@@ -71,7 +84,12 @@ public class MessageServiceImpl implements MessageService{
 		return null;
 	}
 	
-
+	/**
+	 * Get current weather from the darksky api given a latitude and a longitude
+	 * @param latitude
+	 * @param longitude
+	 * @return Weather object
+	 */
 	private Weather getCurrentWeather(double latitude, double longitude){
 			
 		String fullUrl = Constants.DARK_SKY_BASE_URL +Constants.DARK_SKY_API_KEY + "/{latitude}," + "{longitude}";

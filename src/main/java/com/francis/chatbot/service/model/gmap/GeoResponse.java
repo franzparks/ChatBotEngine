@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @author francisphiri
- *
+ *	Helper class to map json response from gmap api into a usable object
  */
 public class GeoResponse {
 	

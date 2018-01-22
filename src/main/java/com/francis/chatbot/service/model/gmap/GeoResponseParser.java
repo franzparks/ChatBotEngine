@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 
 /**
  * @author francisphiri
- *
+ *	Helper class to parse the gmap api response
  */
 public class GeoResponseParser {
 	

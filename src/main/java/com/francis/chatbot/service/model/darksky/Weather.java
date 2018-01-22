@@ -5,7 +5,7 @@ package com.francis.chatbot.service.model.darksky;
 
 /**
  * @author francisphiri
- *
+ *	Helper class to map json response from darksky api into a usable object
  */
 public class Weather {
 	

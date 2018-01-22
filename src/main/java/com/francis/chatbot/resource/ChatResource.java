@@ -18,7 +18,7 @@ import com.francis.chatbot.service.MessageService;
 
 /**
  * @author francisphiri
- *
+ *	Controller for handling requests to the /chat path
  */
 
 @RestController

@@ -5,7 +5,7 @@ package com.francis.chatbot.model;
 
 /**
  * @author francisphiri
- *
+ *	Rich message class
  */
 public class RichMessage implements Message {
 	

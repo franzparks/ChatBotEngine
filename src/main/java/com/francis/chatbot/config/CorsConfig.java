@@ -13,7 +13,7 @@ import com.francis.chatbot.constants.Constants;
 
 /**
  * @author francisphiri
- *
+ *	Config class for configuring cors
  */
 
 @Configuration

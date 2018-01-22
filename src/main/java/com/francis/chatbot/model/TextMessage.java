@@ -1,5 +1,9 @@
 package com.francis.chatbot.model;
 
+/**
+ * @author francisphiri
+ *	Text message class
+ */
 public class TextMessage implements Message {
 	
 	private String type;

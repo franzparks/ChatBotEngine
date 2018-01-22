@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author francisphiri
- *
+ *	Main class of the application
  */
 @SpringBootApplication
 public class ChatBotAppRunner {

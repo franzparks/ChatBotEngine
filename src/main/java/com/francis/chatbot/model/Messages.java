@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author francisphiri
- *
+ *	Messages class
  */
 public class Messages {
 	

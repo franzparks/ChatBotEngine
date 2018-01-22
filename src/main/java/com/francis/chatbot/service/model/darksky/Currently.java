@@ -5,7 +5,7 @@ package com.francis.chatbot.service.model.darksky;
 
 /**
  * @author francisphiri
- *
+ *	Mapper class for getting current weather from the darsky api
  */
 public class Currently {
 	
