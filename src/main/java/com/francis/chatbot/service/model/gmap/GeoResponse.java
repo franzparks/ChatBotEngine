@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.francis.chatbot.service.model;
+package com.francis.chatbot.service.model.gmap;
 
 import java.util.List;
 
