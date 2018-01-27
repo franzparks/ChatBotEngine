@@ -44,7 +44,7 @@ public class ChatResourceTest {
     private MessageService service;
     
     @Test
-    public void givenUsername_whenPostToChat_thenReturnJsonMessage()
+    public void givenUsername_whenPostToChat_thenReturnJsonMessageGreeting()
       throws Exception {
          
         String userName = "alex";
@@ -63,6 +63,34 @@ public class ChatResourceTest {
           .andExpect(status().isOk())
           .andExpect(jsonPath("$.messages", hasSize(1)))
           .andExpect(jsonPath("$.messages[0].text", is("Hello, "+userName + "!")));
+    }
+    
+    @Test
+    public void givenMessage_whenPostToChatWithMissingWeatherKeyWord_thenReturnJsonControlMessage()
+      throws Exception {
+         
+        String location = "Sao Paulo";
+        String controlMessage = "I don't know many things but you can ask me about the weather."
+    			+ "\n"
+    			+ " I can answer questions such as:" + "\n"
+    			+ " what's the weather in <Location>,"+"\n"+ "weather in <Location>,"+"\n"+ "<Location> weather"+"\n"
+    			+ " Note: <Location> can be any city or reference to a city such as SF or San Francisco, or 94100";
+    	
+        
+        Message message = new TextMessage(controlMessage);
+        given(service.processMessage(location)).willReturn(message);
+        
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+				.post("/chat/messages")
+				.contentType("multipart/form-data")
+				.param("user_id", "1234567")
+				.param("action", "message")
+				.param("text", location);
+        
+        mvc.perform(requestBuilder)
+          .andExpect(status().isOk())
+          .andExpect(jsonPath("$.messages", hasSize(1)))
+          .andExpect(jsonPath("$.messages[0].text", is(controlMessage)));
     }
 	
 }
