@@ -90,5 +90,6 @@ public class ChatResourceTest {
           .andExpect(jsonPath("$.messages[0].text", is(controlMessage)));
         reset(service);
     }
+    
 	
 }
